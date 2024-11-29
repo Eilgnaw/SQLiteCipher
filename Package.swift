@@ -9,7 +9,7 @@ let package = Package(
         .iOS(.v12), .watchOS(.v6),
     ],
     products: [
-        .library(name: "SQLiteCipher", targets: ["SQLite", "SQLCipher"]),
+        .library(name: "SQLiteCipher", targets: ["SQLiteCipher"]),
     ],
     targets: [
         .binaryTarget(
@@ -23,5 +23,11 @@ let package = Package(
             url: "https://github.com/Eilgnaw/SQLiteCipher/releases/download/0.14.1/SQLCipher.xcframework.zip",
             checksum: "05752f9ca2919026907f1409c190f0e39060736da83dbe2f2043e19a854021e2"
         ),
+        .target(name: "SQLiteCipher",
+                dependencies: [
+                    .target(name: "SQLite"),
+                    .target(name: "SQLCipher"),
+                ],
+                path: "Sources/SQLiteCipher"),
     ]
 )
